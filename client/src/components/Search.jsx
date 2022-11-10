@@ -1,6 +1,6 @@
 import React from 'react';
 
-const { useState, useEffect } = React;
+const { useState } = React;
 
 const Search = ({ search }) => {
 
@@ -10,14 +10,14 @@ const Search = ({ search }) => {
     setValue(event.target.value)
   }
 
-  const handleClick = (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     search(value);
   }
 
   return (
     <div className="search">
-      <form className="search-form" onSubmit={handleClick}>
+      <form className="search-form" onSubmit={handleSubmit}>
         <input className="search-input" type="text" onChange={handleChange}/>
         <button className="search-button" type="submit">Search</button>
       </form>

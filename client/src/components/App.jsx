@@ -6,59 +6,20 @@ import AddMovie from './AddMovie.jsx'
 const { useState, useEffect } = React;
 
 const tempData = [
-  {title: 'Mean Girls'},
-  {title: 'Hackers'},
-  {title: 'The Grey'},
-  {title: 'Sunshine'},
-  {title: 'Ex Machina'},
-  {title: 'Lord of The Rings'},
-  {title: 'Star Wars'},
-  {title: 'The Gray Man'},
-  {title: 'Bullet Train'},
-  {title: 'Watcher'},
-  {title: 'All Quiet on the Western Front'},
-  {title: 'Descendant'},
-  {title: 'The Good Nurse'},
-  {title: 'Ticket to Paradise'},
-  {title: 'Cars'},
-  {title: 'Carter'},
-  {title: 'Super Pets'},
-  {title: 'Dr.Strange'},
-  {title: 'Day Shift'},
-  {title: 'Ambulance'},
-  {title: 'Massive Talent'},
-  {title: 'Elvis'},
-  {title: 'Sell/Buy/Data'},
-  {title: 'Policeman'},
-  {title: 'Orphan: First Kill'},
-  {title: 'Unhuman'},
-  {title: 'Scream'},
-  {title: 'Halloween Ends'},
-  {title: 'Fresh'},
-  {title: 'The Lost City'},
-  {title: 'Rise'},
-  {title: 'Luckiest Girl Alive'},
-  {title: 'Thirteen Lives'},
-  {title: 'Father Stu'},
-  {title: 'The Outfit'},
-  {title: 'Hustle'},
-  {title: 'The Northman'},
-  {title: 'Black Crab'},
-  {title: 'Morbius'},
-  {title: 'Prey'},
-  {title: 'Uncharted'},
-  {title: 'Luck'},
-  {title: 'The Bad Guys'},
-  {title: 'Cheaper By The Dozen'},
-  {title: 'Sonic 2'},
-  {title: 'LightYear'},
+  {title: 'Mean Girls', watched: false, year: 1999, runtime: 100, metascore: 60, imdb: 6.5},
+  {title: 'Hackers', watched: false, year: 1999, runtime: 100, metascore: 60, imdb: 6.5},
+  {title: 'The Grey', watched: false, year: 1999, runtime: 100, metascore: 60, imdb: 6.5},
+  {title: 'Sunshine', watched: false, year: 1999, runtime: 100, metascore: 60, imdb: 6.5},
+  {title: 'Ex Machina', watched: false, year: 1999, runtime: 100, metascore: 60, imdb: 6.5}
 ]
 
 const App = (props) => {
 
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState(tempData);
 
   const [value, setValue] = useState('');
+
+  const [watchList, setWatchList] = useState(false);
 
   const search = (query) => {
     setValue(query);
@@ -66,6 +27,23 @@ const App = (props) => {
 
   const add = (movie) => {
     setMovies(movies => [...movies, movie]);
+  }
+
+  const toggleWatch = (movie) => {
+    let index = movies.indexOf(movie);
+    let copyA = [...movies];
+    let copyI = {...copyA[index]};
+    copyI.watched = !copyI.watched;
+    copyA[index] = copyI;
+    setMovies(copyA);
+  }
+
+  const handleWatched = (event) => {
+    setWatchList(true)
+  }
+
+  const handleToWatch = (event) => {
+    setWatchList(false)
   }
 
   return (
@@ -76,11 +54,15 @@ const App = (props) => {
       <div>
         <AddMovie add={add}/>
       </div>
-      <div>
-        <Search search={search}/>
+      <div className="sort-container">
+          <Search search={search}/>
+          <button className="watch-button" onClick={handleWatched}>Watched</button>
+          <button className="watch-button" onClick={handleToWatch}>To Watch</button>
+
       </div>
-      <div>
-        <MovieList movies={movies} searchTerm={value}/>
+      <div className="movie-container">
+        <MovieList movies={movies} searchTerm={value}
+          toggleWatch={toggleWatch} watchList={watchList}/>
       </div>
     </div>
 

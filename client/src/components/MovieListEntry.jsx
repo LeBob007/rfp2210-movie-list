@@ -1,10 +1,26 @@
 import React from 'react';
+import MovieListEntryPanel from './MovieListEntryPanel.jsx'
 
-const MovieListEntry = ({ movie }) => {
+const { useState } = React;
+
+const MovieListEntry = ({ movie, toggleWatch }) => {
+
+  const [visiblePanel, setVisiblePanel] = useState(false);
+
+  const displayPanel = (event) => {
+    setVisiblePanel(!visiblePanel)
+  }
 
   return (
     <div className="movie-list-element">
-      <div>{movie.title}</div>
+      <div onClick={displayPanel}>
+        <span>
+          {movie.title}
+
+        </span>
+        {visiblePanel && (<MovieListEntryPanel movie={movie} toggleWatch={toggleWatch}/>)}
+
+      </div>
     </div>
   )
 }
