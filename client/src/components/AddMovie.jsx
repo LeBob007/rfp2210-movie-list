@@ -4,16 +4,16 @@ const { useState } = React;
 
 const AddMovie = ({ add }) => {
 
-  const [title, setTitle] = useState({});
+  const [movie, setMovie] = useState({});
 
   const handleChange = (event) => {
-    setTitle({title: event.target.value, watched: false,
+    setMovie({movie_name: event.target.value, watched: false,
     year: 1999, runtime: 100, metascore: 0, imdb: 0})
   }
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    add(title);
+    add(movie);
   }
 
   return (

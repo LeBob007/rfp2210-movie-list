@@ -10,12 +10,11 @@ const MovieListEntry = ({ movie, toggleWatch }) => {
   const displayPanel = (event) => {
     setVisiblePanel(!visiblePanel)
   }
-
   return (
     <div className="movie-list-element">
       <div onClick={displayPanel}>
         <span>
-          {movie.title}
+          {movie.movie_name}
 
         </span>
         {visiblePanel && (<MovieListEntryPanel movie={movie} toggleWatch={toggleWatch}/>)}
