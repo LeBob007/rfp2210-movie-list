@@ -6,7 +6,7 @@ USE movie;
 
 CREATE TABLE movies (
   id INT NOT NULL AUTO_INCREMENT,
-  movie_name VARCHAR(50),
+  movie_name VARCHAR(50) UNIQUE,
   watched BOOLEAN DEFAULT 0,
   release_year INT DEFAULT 1999,
   runtime INT DEFAULT 100,

@@ -9,7 +9,7 @@ const postMovie = (reqBody, callback) => {
 };
 
 const patchMovie = (reqID, callback) => {
-  db.query(`UPDATE movies SET watched=1 WHERE movies.id="${reqID}"`, callback);
+  db.query(`UPDATE movies SET watched= NOT watched WHERE movies.id=${reqID}`, callback);
 };
 
 module.exports = {
