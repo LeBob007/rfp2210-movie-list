@@ -1,0 +1,16 @@
+DROP DATABASE IF EXISTS movie;
+
+CREATE DATABASE movie;
+
+USE movie;
+
+CREATE TABLE movies (
+  id INT NOT NULL AUTO_INCREMENT,
+  movie_name VARCHAR(50),
+  watched BOOLEAN DEFAULT 0,
+  release_year INT DEFAULT 1999,
+  runtime INT DEFAULT 100,
+  metascore INT DEFAULT 60,
+  imdb DECIMAL(2,1) DEFAULT 5.0,
+  PRIMARY KEY (id)
+);
